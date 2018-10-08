@@ -1,3 +1,3 @@
 # Algorithms in websites
-I usually solved algorithms in baekjoon.
-ID: baekjoon
+I usually solved algorithms in baekjoon. <br />
+ID: ggm1207
