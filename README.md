@@ -1,2 +1,3 @@
 # Algorithms
-Algorithms in websites
+# Algorithms in websites
+I usually solved algorithms in baekjoon.
