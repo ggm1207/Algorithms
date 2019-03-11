@@ -1,14 +1,14 @@
 import numpy as np
 import sys
 import argparse
-import sklearn.datasets
+# import sklearn.datasets
 import matplotlib.pyplot as plt
+import matplotlib.animation as animation
 import math
-
+from time import sleep
 
 # mode 'coh' : 응집  'div' : 분할 
 # K number : 군집 수
-
 
 class DIV(): # method : K-means
     def __init__(self,data,k):
@@ -22,23 +22,28 @@ class DIV(): # method : K-means
         
         labels = np.random.choice([0, 1], self.k)
         old_labels = [l for l in labels]
-        i = 0
-        print(self.centers)
+        
+        label_set = []
+        center_set = []
+        # data_set = []
+        
         while(True):
-            print(i)
             self.labels = np.array([self.nearest(d , self.centers) for d in self.data])
             # print('labels:',labels)
             # print('o_labels:',old_labels)
+            label_set.append(self.labels)
+            center_set.append(self.centers)
             if np.all(self.labels == old_labels):
                 break
             else:
                 old_labels = np.copy(self.labels)
                 self.update_centers()
         
-        print(data)
-        print(self.labels)
+        # print(data)
+        # print(self.labels)
 
-        self.visualize()
+        # self.visualize()
+        self.animations(self.data,label_set,center_set)
 
     def nearest(self, x, centers):
         # print('centers:', centers)
@@ -47,7 +52,7 @@ class DIV(): # method : K-means
         return sims.index(min(sims))
              
     def update_centers(self):
-        print('centers:',self.centers)
+        # print('centers:',self.centers)
         for i in range(self.k):
             self.centers[i] = np.mean(self.data[np.where(self.labels == i)], axis = 0)       
 
@@ -77,12 +82,30 @@ class DIV(): # method : K-means
             
         plt.show()
 
-
+    def animations(self, data, label_set , center_set):
+        fig = plt.figure()
+        color = ['m','g','b','k','r']
+        ims = []
+        j = 0
+        for label in label_set:
+            j += 1
+            for i, lab in enumerate(label):
+                #print(i)
+                plt.plot(data[i][0], data[i][1], marker = 'o', c = color[lab] )
+                title = str(j) + ' label'
+                plt.title(title)
+            plt.show()
+            # sleep(0.2)
+            
 def coh(k):
+    print('아직 구현 안됨 ㅎ')
     pass
 
-def div(k):
-    pass
+def div(k, datanum):
+    data = load_dataset(datanum,k)
+    k = DIV(data,k)
+    k.clustering()
+    
 
 def load_dataset(n,k):
     dataset = np.array([[1,1],[2,2]])
@@ -95,19 +118,20 @@ def main():
     parser = argparse.ArgumentParser(description = 'This code is written for Algorithm-briefing about Clustering')
     parser.add_argument('--mode', type = str, default = 'div', choices = ['coh','div'],metavar = '["coh", "div"]', help = 'Choose a mode about algorithm and start!')
     parser.add_argument('--k', type = int, default = 2 , choices = [2,3,4,5], metavar = 'Choose a number of Cluster', help = 'What do you want the number of cluster?' )
+    parser.add_argument('--datanum', type = int, default = 50, metavar = 'Choose a number of data', help = '데이터 수 입력하라고요!')
     args = parser.parse_args()
 
     MODE = args.mode
     K = args.k
+    datanum = args.datanum
+
 #    print(MODE, K)
 
     if MODE == 'coh':
         coh(K)
     else:
-        div(K)
+        div(K, datanum)
 
 if __name__ == "__main__":
-    # main()
-    data = load_dataset(500,3)
-    k = DIV(data,3)
-    k.clustering()
+    main()
+    
