@@ -31,7 +31,6 @@ for a in ori:
         j += 1
     i += 1
 
-print(np.array(arr))
 
 def main():
     position = []
@@ -52,7 +51,8 @@ def main():
         for j in range(m+2):
             if arr[i][j] == '0':
                 count += 1
-
+    
+    print(np.array(arr))
     print(count) 
 
 
