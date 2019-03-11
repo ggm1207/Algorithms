@@ -1,7 +1,7 @@
 import sys
 import numpy as np
 
-sys.setrecursionlimit(100000)
+sys.setrecursionlimit(10000000)
 
 cctv_list = ['1','2','3','4','5','#']
 
@@ -11,17 +11,27 @@ def pad_with(vector, pad_width, iaxis, kwargs):
     vector[-pad_width[1]:] = pad_value
     return vector
 
-
 arr = []
 n, m = input().split()
 n, m = int(n), int(m)
+
+for i in range(n+2):
+    arr.append(['6' for i in range(m+2)])
+# print(arr)
+
+ori = []
 for i in range(n):
-    arr.append(input().split(' '))  
+    ori.append(input().split(' '))
+i, j = 1 , 1
 
-arr = np.array(arr)
-arr = np.pad(arr, 1, pad_with)
+for a in ori:
+    j = 1
+    for b in a:
+        arr[i][j] = b
+        j += 1
+    i += 1
 
-
+print(np.array(arr))
 
 def main():
     position = []
@@ -33,11 +43,11 @@ def main():
             else:
                 position.append((arr[i][j],(i,j)))
     position = sorted(position)[::-1]
-    print('pos: ', position)
+    # print('pos: ', position)
     mini_size(position)
 
     count = 0
-    print(arr,n,m)
+    # print(arr,n,m)
     for i in range(n+2):
         for j in range(m+2):
             if arr[i][j] == '0':
@@ -128,14 +138,14 @@ def cctv(number , i , j):
             elif ar1 == 'left' and ar2 == 'down':
                 left(i, j)
                 down(i ,j)
-    print(type(number))
+    # print(type(number))
     if number == '1':
         uldr = [up_find(i, j),
         left_find(i, j),
         down_find(i, j),
         right_find(i, j)]
         maxs = max(uldr)
-        print(maxs)
+        # print(maxs)
         no_line = uldr.index(maxs)
         if no_line == 0:
             up(i,j)
@@ -208,6 +218,7 @@ def right(i, j): # i, j + 1
         right(i , j + 1)
     else:
         return
+
 def down(i, j): # i + 1 , j
     if arr[i][j] == '0':
         arr[i][j] = '#'

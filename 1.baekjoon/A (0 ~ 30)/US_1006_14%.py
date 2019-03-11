@@ -20,7 +20,6 @@ def makegroup(group,N,i):
     else:
         return [0]
     
-
 def choragi(arr,N,W):
     group = []
     is_alone = check(arr,N,W)
