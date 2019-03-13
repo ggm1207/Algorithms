@@ -23,7 +23,7 @@ for i in range(n):
     for j in range(m):
         c = grid[i][j]
         if c == 6: continue
-        empty+= 1
+        empty+= 1               # 0을 세지 않네
         if c == 0: continue
         D, U, R, L = sight(i, j)
         if c == 1: camera.append([D,U,R,L])
