@@ -60,14 +60,16 @@ class CCTV():
                 self.arrow_fill(self.arr,'down',x,y)
             else:
                 position.append((cctvnum,(x,y)))
-        self.position = position
+        self.position = position # cctv 5번을 제외한 나머지 cctv
+
         self.maxcount = len(position)
         self.check_arr(self.arr)
         self.rotate(self.arr, 1)
     
     def rotate(self, arr, count):
+
         if count == self.maxcount:
-            # self.check_arr(arr)
+            self.check_arr(arr)
             self.allof.append(self.solve_arr(arr))
             return 
         
@@ -85,7 +87,6 @@ class CCTV():
                 self.arrow_fill(ori_arr,posit[2],x,y)
                 self.rotate(ori_arr, count+1)
                 
-            
         elif cctvnum == '3':
             positive = [
                 ['left','up'],
