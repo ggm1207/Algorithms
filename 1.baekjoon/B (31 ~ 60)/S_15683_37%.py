@@ -143,8 +143,7 @@ class CCTV():
     #         return self.arrow_find(direction, x, y) + 1
     #     else:
     #         return self.arrow_find(direction, x, y)
-        
-        
+    
     def arrow_fill(self, arr, direction, i, j):
         if direction == 'left':
             x , y = i , j - 1
