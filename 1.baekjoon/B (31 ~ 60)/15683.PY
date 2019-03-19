@@ -31,4 +31,5 @@ for i in range(n):
         elif c == 3: camera.append([U|R, U|L, D|R, D|L])
         elif c == 4: camera.append([D|U|R, D|U|L, R|L|U, R|L|D])
         else: camera.append([D|U|R|L])
+
 print(min(empty - len(union(P)) for P in product(*camera)))
