@@ -3,7 +3,7 @@ import os
 import numpy as np
 import pandas as pd
 import re
-from time import sleep
+from sklearn.decomposition import NMF
 
 class tf_idf:
     def __init__(self, datas):
@@ -23,10 +23,20 @@ class tf_idf:
                 tf = value
                 idf = math.log10(max_doc/self.totaltokin_list[key])
                 tf_idf = tf * idf
-                msg = "{:10}: tf = {:2} | idf = {:.2} | tf-idf = {:.2}" .format(key ,tf, idf, tf_idf)
+                msg = "{:20}: tf = {:2} | idf = {:4} | tf-idf = {:3}" .format(key ,tf, round(idf,3), round(tf_idf,3))
                 nparr[i][fk.index(key)] = round(tf_idf,2)
                 print(msg)
-        pdarr = pd.DataFrame(nparr, columns = fk)
+
+        print(nparr)
+        nmf = NMF(n_components=5, init = 'random', random_state=0)
+        print(nparr.shape)
+
+        features = nmf.fit_transform(nparr)
+        pdarr = pd.DataFrame(features, index = ['gunmo', 'intae'])
+        article = pdarr.loc['gunmo']
+        similarities = pdarr.dot(article)
+        print(similarities)
+
         print(pdarr)
     
     def getTokenlist(self):
@@ -56,15 +66,16 @@ def get_datas():
     urbine = datas[1:]
     
     datalist = []
-    for filename in obama:
+    for filename in urbine:
+        data = []
         f = open(datapath + filename,'r',encoding='UTF-8')
         p = re.compile('[a-zA-Z\']+')
         for line in f:
             word = list(map(lambda x : x.lower() ,p.findall(line)))
             if word:
-                datalist += word
-    num = len(datalist)//5
-    return [datalist[i*num:(i+1)*num] for i in range(5)]
+                data += word
+        datalist.append(data)
+    return datalist
 
 
 if __name__ == "__main__":

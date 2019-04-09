@@ -1,0 +1,8 @@
+Nice to meet you PeopleSpace. First of all, thank you for giving me the opportunity to enter your company as an intern. This is my first time submitting my resume to a company. So, I might not be able to give you the information you want. But I'll try to write important information for you.
+
+I'm junior in Kangwon national university. I'm 24 years old in Korean age. In american age I'm 22 years old. My grades in my first year were not very good.
+Because I have no interested in my major. But my grades improved after I went to the army. Becuase I have interested in my major. So now my major grade is 4.09 and the last semester was 4.21. I just want you to know that I'm getting better.
+
+I understand that the two-month program is organized under the theme of Data Science, where training and internship are conducted simultaneously. If your company needs someone who has knowledge of Data Science and is enthusiastic, it may be me. Because I know how to use Tensorflow and keep studying. Also, I'm interested in data analysis so I'm studying data analysis techniques. Although I only covered the Titanic tutorial on the site, I will continue to improve my skills after this semester. Fortunately, this vacation plan doesn't care about places.
+
+I would like you to look at the address of github below and see what I studied.  I'm looking forward to seeing you in lrvine.

@@ -1,0 +1,10 @@
+I have always respected people who make the world to better through computers. The United States has begun computer innovation and it is still continuing. So I hope to visit the U.S. and see a wide insight of computer domain. 
+
+I recommend myself for the following reasons.
+First, I got a high score of 4.31/4.5. I did my best for study.
+Second, I like to make useful programs in life. For example, I often forget many IDs and passwords that I registered before. So I made a program to store account information and I still use it.
+Third, I can reach to the enough level of Python quickly although I am not yet good at it. For this, I sometimes rewrite my program in another language. I think this method is useful for learning a new programming language. Because programs that have been implemented many times already have familiar functions. 
+Lastly, I can share my experiences with my students. I teach new students about C language and common experience. I do it as part of student council activity, but I feel happy and worthwhile when I teach them something. We even won an award with excellent score. If I could participate in this program and get something,
+A great idea for this program, "data science," is very valuable in many parts of today's IT environment especially AI deep learning. These day, machines are learning their knowledge from data, that means machines’ mechanism is changing code-based to data-based. The data determines the algorithm. I believe this new paradigm will lead SW to the level we couldn’t expect now. 
+In short, I hope to get closer to front line of this future through this Internship program.
+Thank you.
