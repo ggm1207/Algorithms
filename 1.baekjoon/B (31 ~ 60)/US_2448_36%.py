@@ -1,3 +1,4 @@
+import math
 def stars(n, count): # arr 접근 가능
     if count > N:
         return
@@ -18,7 +19,8 @@ def stars(n, count): # arr 접근 가능
     stars(n + 3, count + 3)
     stars(n - 3, count + 3)
 
-        
+# 재귀 세번 느낌상
+
 def only_star(n, count):
     if arr[count-1][n] == " ":
         arr[count-1][n] = "*"
@@ -28,9 +30,13 @@ def only_star(n, count):
 
 if __name__ == "__main__":
     N = int(input())
+    k = int(math.log2(N / 3))
+    print(k)
+    
+
     arr =  [[' ' for _ in range(2*N + 1)] for _ in range(N)]
 
-    stars(N,1)
+    # stars(N,1)
     
-    for i in arr:
-        print(''.join(i))
+    # for i in arr:
+    #     print(''.join(i))
