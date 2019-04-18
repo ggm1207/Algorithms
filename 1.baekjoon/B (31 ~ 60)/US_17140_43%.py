@@ -14,7 +14,6 @@ def get_width(): # 가로 얻기
         count = 0
         for a in ar:
             if a:
-                count += 1
             else:
                 break
         width.append(count)
@@ -54,9 +53,9 @@ def expand_width(copyarr):
                     dicts[a] = 1
         items = sorted(list(dicts.items()), key = operator.itemgetter(1,0))
         # items 는 정렬 된 값
-        length = len(itmes)
+        length = len(items)
         for a,b in items:
-            for j in length:
+            for j in range(length):
                 arr[i][j] = a
                 arr[i][j+1] = b
         
@@ -70,25 +69,29 @@ def expand_height(copyarr):
         for j in range(100):
             if copyarr[j][i]:
                 if copyarr[j][i] in dicts:
-                    dicts[a] += 1
+                    dicts[copyarr[j][i]] += 1
                 else:
-                    dicts[a] = 1
+                    dicts[copyarr[j][i]] = 1
         items = sorted(list(dicts.items()), key = operator.itemgetter(1,0))
-        length = len(itmes)
+        length = len(items)
         for a,b in items:
-            for j in length:
+            for j in range(length):
                 arr[j][i] = a
                 arr[j+1][i] = b
                 
 
 if __name__ == "__main__":
-    x,y = MIS()
+    r,c,k = MIS()
     arr = [[0 for _ in range(100)] for _ in range(100)]
 
     for i in range(3):
-        arr[i][0] , arr[i][1] , arr[i][2] , arr[i][3] =  MIS()
+        arr[i][0] , arr[i][1] , arr[i][2] =  MIS()
     
-    # for count in range(1,100+1):
-    #     if (expand_arr()):
-    #         break
-    
+    count = 0
+    for _ in range(1,100+1):
+        if arr[r-1][c-1] == k:
+            print(count)
+            break
+        expand_arr()
+        count += 1
+        
