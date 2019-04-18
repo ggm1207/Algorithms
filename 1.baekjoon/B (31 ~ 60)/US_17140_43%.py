@@ -14,6 +14,7 @@ def get_width(): # 가로 얻기
         count = 0
         for a in ar:
             if a:
+                count += 1
             else:
                 break
         width.append(count)
