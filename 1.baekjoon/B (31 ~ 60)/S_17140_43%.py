@@ -32,7 +32,7 @@ height_max_len = 3
 #                 count += 1
 #         len_list.append(count)
 #     return max(len_list)
-width_max_len
+
 def expand_arr():
     if height_max_len >= width_max_len:
         expand_width() # R 연산
