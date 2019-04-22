@@ -1,6 +1,3 @@
-
-
-
 def mini(n):
     
     return min([get_mini('1'),get_mini('2'),get_mini('3')]) + 1
