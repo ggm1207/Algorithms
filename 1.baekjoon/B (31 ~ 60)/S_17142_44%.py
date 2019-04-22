@@ -38,7 +38,6 @@ def laboratory(positions, aarr):
                     maxs = max(maxs,ar)
     return maxs
 
-# 아 쓰바 잘 못하고 있었네
 def rec(aarr):
     # aarr[x][y] == '0'
     while(1):
