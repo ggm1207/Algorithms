@@ -1,14 +1,23 @@
+import sys
+sys.setrecursionlimit(1000000)
 
-list1 = [[1 for _ in range(11)] for _ in range(11)]
+def dfs(sums,i):
+    if sums == n:
+        return True
+    elif sums > n:
+        return dfs(sums-i,i+1)
+    else:
+        dfs(sums+i,i)
+    
 
-for i in range(2,11):
-    for j in range(1,i):
-        list1[i][j] = list1[i-j][j-1] + list1[i-j][j]
-
+def add123():
+    cnt = 0
+    for i in range(1,4):
+        sums = 0
+        if dfs(sums,i):
+            cnt += 1
 
 if __name__ == "__main__":
-    for l1 in list1:
-        print(l1)
     t = int(input())
     for i in range(t):
         n = int(input())
