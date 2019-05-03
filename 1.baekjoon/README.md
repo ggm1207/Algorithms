@@ -8,4 +8,4 @@
       
 #### 파일 형식
      S_1003_29%.py : Solved_문제번호_정답률.py
-     US_1003_27.py : UnSovled_문제번호_정답률.py
+     US_1003_27%.py : UnSovled_문제번호_정답률.py
