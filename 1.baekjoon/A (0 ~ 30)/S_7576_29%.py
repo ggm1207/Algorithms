@@ -1,7 +1,5 @@
 import sys
 import collections
-import queue
-
 
 MIS = lambda : map(int,sys.stdin.readline().split())
 q = collections.deque()
