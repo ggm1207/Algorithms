@@ -8,9 +8,7 @@ def fake():
     clipboard = 0
     cnt = 0
     q.append(('copy',cnt+1,emoticon, clipboard))
-    # copy -> 그래도
-    # paste -> 짝수일때만 가능 // 2
-    # delete -> + 1
+    
     dicts = {'copy' : 0 , 'paste' : 1 , 'delete': 2}
     
     visited = [[0 for i in range(1002)] for _ in range(1002)]
