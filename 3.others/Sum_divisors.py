@@ -1,6 +1,6 @@
 ''' n의 약수들의 합과 n 이 같은지를 판별'''
 import numpy as np
-
+from string import ascii_uppercase
 
 def Find_divisors(num):
     lists = []
