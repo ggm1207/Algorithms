@@ -48,11 +48,18 @@ def binsearch(lists, num):
     elif lists[mid] < num:
       low = mid + 1
     else:
-      return mid
-
-  lists.insert(low, num)
-  return lists, low
-
+      # print(num, 'happen')
+      lists.insert(mid + 1, num)
+      return lists, mid + 1
+  
+  if lists[low] > num:
+    # print('low')
+    lists.insert(low, num)
+    return lists , low
+  else:
+    # print('low + 1')
+    lists.insert(low + 1, num)
+    return lists , low + 1
 
 @timer
 def origin_solution(N):
@@ -62,7 +69,7 @@ def origin_solution(N):
   check_num = product(maketuple(2))
   # min_v = product(value_list[0])
   while(1):
-    print(value_list)
+    # print(value_list)
     if cnt == N:
       return check_num
 
@@ -115,7 +122,7 @@ def new_solution_with_insertion(N):
     idx = 0
 
     # min_v = value_list.pop(idx) # value_list 에서 최소값
-    # helper = help_product.pop(idx)
+    # helper = help_product.pop(idx) # 이 방법이 더 느림
     min_v = value_list[idx]
     helper = help_product[idx][:]
     del value_list[idx]
@@ -123,7 +130,7 @@ def new_solution_with_insertion(N):
     
     if check_num == min_v:
       value = helper[1] * min_v // helper[0]
-      value_list, idx = reverse_insertion_sorted(value_list, value)
+      value_list, idx = insertion_sorted(value_list, value)
       help_product.insert(idx, (helper[0] + 1, helper[1] + 1))
       continue
 
@@ -142,19 +149,27 @@ def new_solution_with_insertion(N):
     cnt += 1
 
 @timer
-def new_solution_with_binsearch(N):
+def new_solution_with_binsearch(N): # value_list 의 길이가 그렇게 길지 않아서 bin_search가 힘을 못 쓰는 듯..
   cnt, num = 1 , 3
   value_list = [6, 6]
   help_product = [(2,4), (1,4)]
   check_num = product(maketuple(2))
   while(1):
+    # print(value_list)
+    # if value_list == [720, 720, 756, 840]:
+    #   print(helper)
+    #   break
     if cnt == N:
       return check_num
 
     idx = 0
-    print(value_list)
-    min_v = value_list.pop(idx) # value_list 에서 최소값
-    helper = help_product.pop(idx)
+    
+    min_v = value_list[idx]
+    helper = help_product[idx][:]
+    del value_list[idx]
+    del help_product[idx]
+    
+    # print(helper)
     # min_v = value_list[idx]
     # helper = help_product[idx][:]
     # del value_list[idx]
@@ -175,7 +190,7 @@ def new_solution_with_binsearch(N):
     if (helper[1] - helper[0]) == v_len + 1:
       num += 1
       value = product(maketuple(num))
-      value_list, idx = binsearch(value_list, value)
+      value_list, idx = reverse_insertion_sorted(value_list, value)
       help_product.insert(idx, (1, num + 1))
 
     cnt += 1
