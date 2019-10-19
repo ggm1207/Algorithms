@@ -18,43 +18,29 @@ M = 0
 
 arrow = [(1,0),(-1,0),(0,1),(0,-1)]
 
-def bfs():
+def div_virus(lab, v_y, v_x):
+    mask = lab[:]
+    prev_v = [(v_y, v_x)]
+    count = 0
+    while(1):
+        next_v = []
+        for y, x in prev_v:
+
+
+
+        prev_v = next_v 
+
+
+
+def fake():
     min_cnt = 10000
-    virusList = list(combinations(getVirusList(), M))
-    
-    for virus in virusList: # 경우의 수
-        visited = deepcopy(lab)
-        max_cnt = 0
-        print('*'*40)
-        print(virus)
-        q = deque()
-
-        for y,x in virus: # 초기 활성 바이러스
-            q.append((y,x,0))
-            visited[y][x] = -1
-
-        while(q):
-            y, x, cnt = q.popleft()
-            if cnt > min_cnt:
-                # print(cnt, min_cnt)
-                # print('break')
-                break
-
-            print(y,x, cnt)
-            for yc, xc in arrow:
-                if 0 <= y + yc < N and 0 <= x + xc < N and visited[y+yc][x+xc] != 1:
-                    if visited[y+yc][x+xc] == 2:
-                        visited[y+yc][x+xc] = -1
-                        q.append((y+yc, x+xc, cnt + 1))
-                    if visited[y+yc][x+xc] == 0:
-                        visited[y+yc][x+xc] = cnt + 1
-                        q.append((y+yc, x+xc, cnt + 1))
-            for visit in visited:
-                print(visit)
-            print()
-
-        min_cnt = min(min_cnt, cnts)
-    print(min_cnt)
+    virus_possible = {}
+    all_virusList = getVirusList()
+    virusList = list(combinations(all_virusList, M))
+    # print(all_virusList)
+    # print(virusList)
+    for v_y, v_x in all_virusList:
+        virus_possible[(v_y, v_x)] = div_virus(lab, v_y, v_x)
 
 def getVirusList():
     l = []
@@ -67,5 +53,5 @@ def getVirusList():
 if __name__ == "__main__":
     N, M = MIS() # 4 <= N <= 50, 1 <= M <= 10
     lab = [list(MIS()) for _ in range(N)]
-    # print(lab)
-    bfs()
+    print(lab)
+    fake()
