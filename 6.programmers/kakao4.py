@@ -3,6 +3,8 @@ import random
 
 # union-find 문제라는 개념을 알고 나서 풀었다...
 # 나도 이런식으로 접근할려 했는데 왜 안되었을까..
+# 문제 다시 풀기는 귀찮으니.. 밑에 설명..
+# dict 에서 합쳐지면 아래있는 값을 배열에서 변경하면 됨. 그럼 시간 오래 안 걸림
 def solution(k, room_number):
     answer = []
     next_room_number = dict()
