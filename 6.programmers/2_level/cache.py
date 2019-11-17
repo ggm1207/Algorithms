@@ -8,7 +8,7 @@
 0	                  [Jeju, Pangyo, Seoul, NewYork, LA]	25
 
 당연히 lru 를 안다고 생각한게 화근..
-계속 mfu 구현하고 왜 틀리나 고민하고 있었네
+mfu 구현하고 왜 틀리나 고민하고 있었네
 """
 def solution(cacheSize, cities):
   if cacheSize == 0:
