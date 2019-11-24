@@ -5,8 +5,7 @@ import math
 def beta_var(alpha, beta):
     # return (math.gamma(alpha)*math.gamma(beta))/math.gamma(alpha + beta)
     return alpha*beta / (pow((alpha + beta),2) * (alpha + beta + 1))
-    
-import math
+
 if __name__ == "__main__":
 
     T = int(stdin.readline())

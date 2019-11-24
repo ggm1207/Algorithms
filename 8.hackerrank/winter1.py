@@ -4,10 +4,10 @@ import math
 
 if __name__ == "__main__":
 
-    user_item_rating = defaultdict(float)
-    total_itemlist = set()
-    total_userlist = set()
-    user_itemlist = defaultdict(set)
+    user_item_rating = defaultdict(float) # (user, item) = rating
+    total_itemlist = set()                # { total item index }
+    total_userlist = set()                # { total user index }
+    user_itemlist = defaultdict(set)      # { user index : { user item ... }, ... }
 
     #### input start
     num_sim_user_topk = int(stdin.readline().rstrip('\n'))
@@ -36,7 +36,7 @@ if __name__ == "__main__":
     # print(num_reco_users)       # 
     # print(reco_users)           # 추천결과를 만들어야 할 유저 ID
 
-    avg_dict = defaultdict(float)
+    avg_dict = defaultdict(float) # cache(maxsize=None)
     def avg(x): # check
         if avg_dict[x]:
             return avg_dict[x]
@@ -46,22 +46,21 @@ if __name__ == "__main__":
         avg_dict[x] =  avg / len(user_itemlist[x])
         return avg_dict[x]
             
-    simil_dict = defaultdict(float)
+    simil_dict = defaultdict(float) # cache(maxsize=None)
     def simil(x, y): # check
-        if simil_dict[x,y]:
+        if simil_dict[x,y]: # (x, y) in cache
             return simil_dict[x,y]
         ist_itemlist = user_itemlist[x].intersection(user_itemlist[y])
         rx_, ry_ = avg(x), avg(y)
         l_d = math.sqrt(sum(map(lambda item: pow(user_item_rating[(x,item)] - rx_, 2), ist_itemlist)))
         r_d = math.sqrt(sum(map(lambda item: pow(user_item_rating[(y,item)] - ry_, 2), ist_itemlist)))
         up = sum(map(lambda item: (user_item_rating[(x,item)] - rx_)*(user_item_rating[(y,item)] - ry_), ist_itemlist))
-        if (l_d * r_d) == 0 or len(ist_itemlist) == 0:
+        if (l_d * r_d) == 0 or len(ist_itemlist) == 0: # Pearson correlation이 정의되지 않는 경우
             return 0
-        simil_dict[x,y] = up / (l_d * r_d)
-        simil_dict[y,x] = simil_dict[x,y]
+        simil_dict[x,y] = up / (l_d * r_d) # cache
+        simil_dict[y,x] = simil_dict[x,y] # cache
         return simil_dict[x,y]
 
-    # print('total_user:', total_userlist)
     def get_setU(reco_user):
         reco_user_simillist = [(user, simil(reco_user, user)) for user in total_userlist if user != reco_user]
         return sorted(reco_user_simillist, key = lambda x: x[1], reverse=True)[:num_sim_user_topk]
@@ -76,19 +75,16 @@ if __name__ == "__main__":
 
     ### solve
     for reco_user in reco_users:
-        reco_ratinglist = []
+        reco_ratinglist = [] # 1
         reco_items = list(total_itemlist.difference(user_itemlist[reco_user]))
         U_ = get_setU(reco_user)
         
         for reco_item in reco_items:
-            D_ = get_delU(U_, reco_user, reco_item) 
-            # print('reco_item:', reco_item)
-            # print('D_', D_)
-            r_ = avg(reco_user)
+            D_ = get_delU(U_, reco_user, reco_item)
+            r_ = avg(reco_user) # 밖으로 빼내는게 좋습니다..
             sim = sum([abs(simil(reco_user, sim_user)) for sim_user in D_])
             k = (1 / sim) if sim else 0
             last = sum([simil(reco_user, sim_user)*(user_item_rating[(sim_user, reco_item)]  - avg(sim_user)) for sim_user in D_])
-            # print(k, last)
             rui = r_ +  k * last
             reco_ratinglist.append(rui)
 
